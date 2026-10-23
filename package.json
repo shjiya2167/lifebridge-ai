@@ -8,12 +8,10 @@
     "dev:client": "npm --prefix client run dev",
     "dev": "concurrently -n \"SERVER,CLIENT\" -c \"cyan,magenta\" \"npm run dev:server\" \"npm run dev:client\"",
     "build": "npm --prefix server run build && npm --prefix client run build",
+    "build:client": "npm --prefix client run build",
     "test": "npm --prefix server run test"
   },
   "devDependencies": {
     "concurrently": "^9.1.2"
-  },
-  "dependencies": {
-    "install": "^0.13.0"
   }
 }
