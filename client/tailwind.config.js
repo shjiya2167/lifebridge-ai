@@ -8,27 +8,34 @@ export default {
     extend: {
       colors: {
         brand: {
-          50: '#f0fdfa',
-          100: '#ccfbf1',
-          200: '#99f6e4',
-          300: '#5eead4',
-          400: '#2dd4bf',
-          500: '#14b8a6',
-          600: '#0d9488',
-          700: '#0f766e',
-          800: '#115e59',
-          900: '#134e4a',
+          50: '#edf2ff', // light royal blue
+          100: '#cbe0ff',
+          200: '#99c2ff',
+          300: '#66a3ff',
+          400: '#3385ff',
+          500: '#0066ff', // primary royal blue
+          600: '#0055cc',
+          700: '#004499',
+          800: '#003366',
+          900: '#002233',
         },
-        navy: {
-          800: '#1e293b',
-          900: '#0f172a',
-          950: '#020617',
+        emergency: {
+          50: '#ffe5e0',
+          100: '#ffbcb4',
+          200: '#ff9388',
+          300: '#ff6a5c',
+          400: '#ff4130',
+          500: '#ff1904', // coral primary
+          600: '#e60000',
+          700: '#b30000',
+          800: '#800000',
+          900: '#4d0000',
         },
         urgency: {
           routine: '#10b981',    // Emerald
           elevated: '#f59e0b',   // Amber
           urgent: '#f97316',     // Orange
-          emergency: '#ef4444',  // Red
+          emergency: '#ff1904',  // Coral
           unknown: '#64748b',    // Slate
         }
       },

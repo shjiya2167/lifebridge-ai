@@ -95,7 +95,7 @@ export class IntentRouterService {
   async route(rawText: string, files?: { mimetype: string }[]): Promise<IntentRouting> {
     const text = sanitizeUntrustedInput(rawText);
     const entities = detectEntities(text);
-    const hasFiles = files && files.length > 0;
+    const hasFiles = Boolean(files && files.length > 0);
 
     // Fast deterministic path
     const fastIntent = detectIntentFromPatterns(text);

@@ -33,10 +33,10 @@ export const EmergencyBanner: React.FC<EmergencyBannerProps> = ({ currentLanguag
 
   return (
     <>
-      <div className="bg-red-600 text-white shadow-md border-b border-red-700 no-print">
+      <div className="bg-emergency-600 text-white shadow-md border-b border-emergency-700 no-print">
         <div className="max-w-6xl mx-auto px-4 py-2.5 sm:py-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
           <div className="flex items-start sm:items-center gap-2.5">
-            <span className="p-1 rounded-lg bg-red-700 text-white flex-shrink-0 animate-pulse">
+            <span className="p-1 rounded-lg bg-emergency-700 text-white flex-shrink-0 animate-pulse">
               <ShieldAlert className="w-4 h-4" />
             </span>
             <div>
