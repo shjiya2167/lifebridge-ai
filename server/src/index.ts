@@ -105,6 +105,18 @@ const upload = multer({
   }
 });
 
+// GET / (Root health confirmation)
+app.get('/', (_req: Request, res: Response) => {
+  res.json({
+    status: 'ok',
+    service: 'LifeBridge AI Universal Public Assistance Backend',
+    message: 'Backend API is operational',
+    healthCheck: '/api/health',
+    version: '1.0.0',
+    timestamp: new Date().toISOString()
+  });
+});
+
 // GET /api/health
 app.get('/api/health', (_req: Request, res: Response) => {
   res.json({
@@ -405,12 +417,14 @@ app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
 });
 
 // Start Server
-app.listen(PORT, () => {
-  console.log(`===================================================`);
-  console.log(`  LifeBridge AI Server listening on port ${PORT}`);
-  console.log(`  Mode: ${process.env.NODE_ENV || 'development'}`);
-  console.log(`  Live Gemini API: ${defaultGeminiService.isLiveConfigured() ? 'YES' : 'NO (Simulation Engine Active)'}`);
-  console.log(`===================================================`);
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => {
+    console.log(`===================================================`);
+    console.log(`  LifeBridge AI Server listening on port ${PORT}`);
+    console.log(`  Mode: ${process.env.NODE_ENV || 'development'}`);
+    console.log(`  Live Gemini API: ${defaultGeminiService.isLiveConfigured() ? 'YES' : 'NO (Simulation Engine Active)'}`);
+    console.log(`===================================================`);
+  });
+}
 
 export default app;

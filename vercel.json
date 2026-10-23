@@ -1,34 +1,10 @@
 {
-  "version": 3,
-  "services": {
-    "frontend": {
-      "type": "static",
-      "root": "client",
-      "buildCommand": "npm run build --prefix client",
-      "outputDirectory": "dist"
-    },
-    "backend": {
-      "type": "node",
-      "root": "server",
-      "buildCommand": "npm run build --prefix server",
-      "entrypoint": "dist/index.js",
-      "environment": {
-        "PORT": "5001",
-        "GEMINI_API_KEY": "@gemini_api_key",
-        "ALLOWED_ORIGINS": "@allowed_origins"
-      }
-    }
-  },
+  "buildCommand": "npm run build --prefix client",
+  "outputDirectory": "client/dist",
   "rewrites": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1",
-      "service": "backend"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1",
-      "service": "frontend"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }

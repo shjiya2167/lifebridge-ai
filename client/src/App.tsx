@@ -9,7 +9,7 @@ import { HistoryView } from './components/HistoryView';
 import { AboutSafetyView } from './components/AboutSafetyView';
 import { SettingsModal } from './components/SettingsModal';
 import { AppConfig, GeminiStructuredResponse } from './types';
-import { fetchAppConfig, submitAnalysis } from './lib/api';
+import { fetchAppConfig, submitAnalysis, fetchHistorySession } from './lib/api';
 import { getTranslation } from './lib/translations';
 import { AlertCircle, RotateCcw, Shield, Sparkles } from 'lucide-react';
 
@@ -79,13 +79,10 @@ export const App: React.FC = () => {
 
   const handleSelectHistorySession = async (id: string) => {
     try {
-      const res = await fetch(`/api/history/${id}`);
-      if (res.ok) {
-        const data = await res.json();
-        if (data.session?.analysis) {
-          setAnalysisResult(data.session.analysis);
-          setActiveTab('home');
-        }
+      const data = await fetchHistorySession(id);
+      if (data.session?.analysis) {
+        setAnalysisResult(data.session.analysis);
+        setActiveTab('home');
       }
     } catch (err) {
       console.error('Failed to load session details:', err);

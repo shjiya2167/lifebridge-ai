@@ -5,7 +5,16 @@ import {
   SessionHistoryItem
 } from '../types';
 
-const API_BASE = '/api';
+const getApiBase = (): string => {
+  const envUrl = (import.meta.env.VITE_API_URL || import.meta.env.VITE_API_BASE_URL || '').trim();
+  if (!envUrl) {
+    return '/api';
+  }
+  const cleanUrl = envUrl.replace(/\/+$/, '');
+  return cleanUrl.endsWith('/api') ? cleanUrl : `${cleanUrl}/api`;
+};
+
+export const API_BASE = getApiBase();
 
 export async function fetchAppConfig(): Promise<AppConfig> {
   const res = await fetch(`${API_BASE}/config`);
@@ -53,7 +62,16 @@ export async function deleteHistorySession(id: string): Promise<boolean> {
   return res.ok;
 }
 
+export async function fetchHistorySession(id: string): Promise<{ success: boolean; session?: { analysis?: GeminiStructuredResponse } }> {
+  const res = await fetch(`${API_BASE}/history/${id}`);
+  if (!res.ok) {
+    throw new Error('Failed to load session details');
+  }
+  return res.json();
+}
+
 export async function clearAllSessions(): Promise<boolean> {
   const res = await fetch(`${API_BASE}/history`, { method: 'DELETE' });
   return res.ok;
 }
+
